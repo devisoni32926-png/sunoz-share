@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SUNOZ Reel</title>
-  <style>body{margin:0;background:#080808;color:#fff;font-family:Arial,serif;display:flex;min-height:100vh;align-items:center;justify-content:center;.box{width:90%;max-width:420px;padding:32px 20px} h1{font-size:36px;margin:0 0 10px} p{color:#aaa;line-height:1.5} button{margin-top:20px;width:100%;padding:15px;border:0;border-radius:10px;background:#fff;color:#000;font-size:16px;font-weight:bold} .small{font-size:13px;color:#777} </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SUNOZ Reel</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080808;color:#fff;font-family:Arial,sans-serif}
+.box{width:100%;max-width:720px;margin:auto;padding:24px 16px;text-align:center}
+h1{font-size:34px;margin:5px 0 8px}
+p{color:#aaa;line-height:1.5}
+.preview{display:none;width:100%;height:50vh;max-height:520px;background:#000;border-radius:16px;object-fit:cover;margin:18px 0}
+.btn{display:block;width:100%;padding:15px;margin:10px 0;border:0;border-radius:12px;background:#fff;color:#000;font-size:16px;font-weight:bold;text-decoration:none}
+.secondary{background:#222;color:#fff}
+.small{font-size:13px;color:#777}
+</style>
 </head>
-<body><div class="box"><h1>SUNOZ</H1><p>Someone shared a Reel with you.</p><button id="open">Open in SUNOZ</button><p>If SUNOZ is not installed, install the app first and open this link again.</p></div><script>const reel=new URLSearchParams(window.location.search).get("reel");document.getElementById("open").onclick=function(){if(reel){window.location.href="sunoz://reel/"+encodeURIComponent(reel);}else{alert("Reel link is invalid.");}};</script><style>body{margin:0;background:#050505;color:#fff;font-family:Arial,sans-serif}.box{max-width:720px;margin:auto;padding:20px;text-align:center}.preview{width:100%;height:50vh;max-height:520px;background:#000;border-radius:16px;object-fit:cover;margin:15px 0}.btn{display:block;width:100%;box-sizing:border-box;padding:15px;margin:10px 0;border:0;border-radius:12px;background:#fff;color:#000;font-size:16px;font-weight:700;text-decoration:none}.btn.secondary{background:#222;color:#fff}</style><video id="preview" class="preview" controls autoplay muted playsinline loop style="display:none"></video><script>const p=new URLSearchParams(location.search),reel=p.get("reel"),video=p.get("video");const v=document.getElementById("preview");if(video){v.src=video;v.style.display="block"}document.getElementById("open").onclick=function(){if(reel)location.href="sunoz://reel/"+encodeURIComponent(reel);else alert("Reel link is invalid.")};</script></body>
+<body>
+<div class="box">
+<h1>SUNOZ</h1>
+<p>Someone shared a Reel with you.</p>
+<video id="preview" class="preview" controls autoplay muted playsinline loop></video>
+<p id="watch">Watch this Reel without registration.</p>
+<button id="open" class="btn">Open in SUNOZ</button>
+<button id="register" class="btn secondary">Login / Register</button>
+<p class="small">Create your SUNOZ account to continue watching and interact with the Reel.</p>
+</div>
+<script>
+const params=new URLSearchParams(window.location.search);
+const reel=params.get("reel");
+const video=params.get("video");
+const preview=document.getElementById("preview");
+
+if(video){
+  preview.src=video;
+  preview.style.display="block";
+}
+
+function openSunoz(){
+  if(reel){
+    window.location.href="sunoz://reel/"+encodeURIComponent(reel);
+  }else{
+    alert("Reel link is invalid.");
+  }
+}
+
+document.getElementById("open").onclick=openSunoz;
+document.getElementById("register").onclick=openSunoz;
+</script>
+</body>
 </html>
