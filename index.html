@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SUNOZ Reel</title>
+  <style>body{margin:0;background:#080808;color:#fff;font-family:Arial,serif;display:flex;min-height:100vh;align-items:center;justify-content:center;.box{width:90%;max-width:420px;padding:32px 20px} h1{font-size:36px;margin:0 0 10px} p{color:#aaa;line-height:1.5} button{margin-top:20px;width:100%;padding:15px;border:0;border-radius:10px;background:#fff;color:#000;font-size:16px;font-weight:bold} .small{font-size:13px;color:#777} </style>
+</head>
+<body><div class="box"><h1>SUNOZ</H1><p>Someone shared a Reel with you.</p><button id="open">Open in SUNOZ</button><p>If SUNOZ is not installed, install the app first and open this link again.</p></div><script>const reel=new URLSearchParams(window.location.search).get("reel");document.getElementById("open").onclick=function(){if(reel){window.location.href="sunoz://reel/"+encodeURIComponent(reel);}else{alert("Reel link is invalid.");}};</script></body>
+</html>
